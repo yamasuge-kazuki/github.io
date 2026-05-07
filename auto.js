@@ -1,7 +1,7 @@
 javascript:(async function() {
 
 const url = "https://docs.google.com/spreadsheets/d/1M4vlzbZfc9_eq9jelWe0T4lnrxCsnR2tE1wYC0BFbY4/export?format=csv";
-
+console.log(url);
 try {
   
     const response = await fetch(url);
@@ -9,7 +9,20 @@ try {
     
     const csvText = await response.text();
 
-    console.log("CSVを配列として格納しました:", csvText);
+   
+    const rows = csvText.split(/\r?\n/);
+    const headers = rows[0].split(',');
+    
+    const data = rows.slice(1).filter(row => row).map(row => {
+      const values = row.split(',');
+      const obj = {};
+      headers.forEach((header, index) => {
+        obj[header.trim()] = values[index]?.trim();
+      });
+      return obj;
+    });
+
+    console.log("CSVを配列として格納しました:", data);
     alert("読み込み完了！コンソールを確認してください。");
     
 

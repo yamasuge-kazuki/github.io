@@ -9,7 +9,7 @@ try {
     
     const csvText = await response.text();
 
-    console.log("CSVを配列として格納しました:", csvText);
+    console.log("CSVを配列として格納しました:", csvText[0]);
     alert("読み込み完了！コンソールを確認してください。");
     
 

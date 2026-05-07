@@ -35,5 +35,10 @@ try {
   const url = window.location.href;
   const match = url.match(/https:\/\/mypage\.(\d+)/);
   
-    
+  if (match) {
+    const code = match[1];
+    } else {
+    alert("対象のURLパターンではありません。");
+    }
+  
 })();

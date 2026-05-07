@@ -1,7 +1,7 @@
 javascript:(async function() {
 
 const url = "https://docs.google.com/spreadsheets/d/1M4vlzbZfc9_eq9jelWe0T4lnrxCsnR2tE1wYC0BFbY4/export?format=csv";
-console.log(url);
+
 try {
   
     const response = await fetch(url);

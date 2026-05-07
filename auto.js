@@ -9,20 +9,7 @@ try {
     
     const csvText = await response.text();
 
-   
-    const rows = csvText.split(/\r?\n/);
-    const headers = rows[0].split(',');
-    
-    const data = rows.slice(1).filter(row => row).map(row => {
-      const values = row.split(',');
-      const obj = {};
-      headers.forEach((header, index) => {
-        obj[header.trim()] = values[index]?.trim();
-      });
-      return obj;
-    });
-
-    console.log("CSVを配列として格納しました:", csvText[1]);
+    console.log("CSVを配列として格納しました:", csvText);
     alert("読み込み完了！コンソールを確認してください。");
     
 

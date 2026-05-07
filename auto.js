@@ -8,10 +8,33 @@ const pw="2Pr2h?Uq&AW/!&c";
 const match = pageurl.match(/https:\/\/mypage\.(\d+)/);
 const button =document.getElementById("loginbtn");
 
+function csvtoarray(csvurl){
+      const response = await fetch(csvurl);
+      if (!response.ok) throw new Error("ファイルの取得に失敗しました。共有設定を確認してください。");
+    
+      const csvText = await response.text();
+
+
+      const rows = csvText.split(/\r?\n/);
+      const headers = rows[0].split(',');
+    
+      const data = rows.slice(1).filter(row => row).map(row => {
+      const values = row.split(',');
+      const obj = {};
+      headers.forEach((header, index) => {
+        obj[header.trim()] = values[index]?.trim();
+      });
+      return obj;
+    });
+
+    return data;
+}
+
 if (match) {
     const urlcode = match[1];
     console.log("抽出されたコード:", urlcode);
     try {
+      const data = csvtoarray(csvurl);
       const response = await fetch(csvurl);
       if (!response.ok) throw new Error("ファイルの取得に失敗しました。共有設定を確認してください。");
     

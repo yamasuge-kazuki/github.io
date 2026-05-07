@@ -22,7 +22,7 @@ try {
       return obj;
     });
 
-    console.log("CSVを配列として格納しました:", csvText["code"]);
+    console.log("CSVを配列として格納しました:", csvText[1]);
     alert("読み込み完了！コンソールを確認してください。");
     
 

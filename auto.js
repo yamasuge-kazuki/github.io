@@ -4,7 +4,6 @@ const csvurl = "https://docs.google.com/spreadsheets/d/1M4vlzbZfc9_eq9jelWe0T4ln
 const pageurl = window.location.href;
 const idnode=document.getElementById("gksid");
 const pwnode=document.getElementById("!gkspw");
-const pw="2Pr2h?Uq&AW/!&c";
 const match = pageurl.match(/https:\/\/mypage\.(\d+)/);
 const button =document.getElementById("loginbtn");
 
@@ -28,8 +27,7 @@ if (match) {
     console.log("抽出されたコード:", urlcode);
 
     try {
-      pwnode.value=pw;
-      console.log(pw);
+
 
       const response = await fetch(csvurl);
       if (!response.ok) throw new Error("ファイルの取得に失敗しました。共有設定を確認してください。");
@@ -43,8 +41,10 @@ if (match) {
         console.log(csvcode,urlcode);
         if (csvcode==urlcode){
           let csvid=data[i]["ID"];
+          let csvpw=data[i]["PWD"];
           idnode.value= csvid;
-          console.log(csvid,pw);
+          pwnode.value= csvpw;
+          console.log(csvid,csvpw);
           break;
         }
       }
